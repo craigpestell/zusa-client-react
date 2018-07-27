@@ -1,55 +1,41 @@
 /* eslint-disable react/destructuring-assignment */
 import React from 'react';
-import { Route, Link } from 'react-router-dom';
-import styled from 'styled-components';
+import { Route, NavLink as RRNavLink, Link } from 'react-router-dom';
+// import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import { Navbar, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap';
+// import styles from '../../app/styles.scss';
 
-const Nav = styled.div`
-  border: 1px solid black;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-`;
-
-const StyledLink = styled(Link)`
-  text-decoration: none;
-  color: inherit;
-`;
-
-const NavItem = styled.div`
-  padding: 10px 10px 10px 0;
-  margin-right: 5px;
-  font-size: 1em;
-  ${StyledLink} {
-    font-weight: bold;
-    color: ${props => (props.active ? '#46b0ed' : '#515f71')};
-    transition: color 1s ease;
-  }
-`;
-
-// type Props = { to: String };
-
-const NavLink = ({ to, ...rest }) => (
+const NavLinkRoute = ({ to, ...rest }) => (
   <Route path={to}>
     {({ match }) => (
       <NavItem active={match && match.isExact}>
-        <StyledLink to={to} {...rest} />
+        <NavLink to={to} {...rest} tag={RRNavLink} activeClassName="active" />
       </NavItem>
     )}
   </Route>
 );
 
-NavLink.propTypes = { to: PropTypes.string.isRequired };
+NavLinkRoute.propTypes = { to: PropTypes.string.isRequired };
 
 export default () => (
-  <div>
-    <Nav>
-      <NavLink to="/">Home</NavLink>
-      <NavLink to="/catalog">Catalog</NavLink>
-      <NavLink to="/about">About</NavLink>
-      <NavLink to="/500">500</NavLink>
-      <NavLink to="/401">401</NavLink>
-      <NavLink to="/some-route-which-does-not-exist">Not Found</NavLink>
+  <Navbar>
+    <NavbarBrand tag={Link} to="/">
+      HOME IMG
+    </NavbarBrand>
+    <Nav className="ml-auto navbar">
+      <NavLinkRoute to="/" tag={RRNavLink}>
+        Home
+      </NavLinkRoute>
+      <NavLinkRoute to="/catalog" tag={RRNavLink}>
+        Catalog
+      </NavLinkRoute>
+      <NavLinkRoute to="/about">About</NavLinkRoute>
+      <NavLinkRoute to="/500">500</NavLinkRoute>
+      <NavLinkRoute to="/401">401</NavLinkRoute>
+      <NavLinkRoute to="/some-route-which-does-not-exist">
+        Not Found
+      </NavLinkRoute>
     </Nav>
-  </div>
+  </Navbar>
 );

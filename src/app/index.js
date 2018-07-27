@@ -4,11 +4,12 @@ import React from 'react';
 import { renderRoutes } from 'react-router-config';
 import Helmet from 'react-helmet';
 import { hot } from 'react-hot-loader';
+
 import styled, { injectGlobal } from 'styled-components';
 import config from '../config';
 // Import your global styles here
 import 'normalize.css/normalize.css'; // eslint-disable-line import/first
-// import styles from './styles.scss';
+import './styles.scss';
 import Header from '../components/Header';
 
 // ========================
@@ -43,23 +44,6 @@ type Props = { route: Object };
 
 const AppWrapper = styled.div`
   color: $color-white;
-
-  .header {
-    overflow: auto;
-    padding: 15px;
-
-    img {
-      float: left;
-      height: 70px;
-      margin-right: 1em;
-    }
-  }
-
-  hr {
-    margin-bottom: 0;
-    margin-top: 0;
-    opacity: 0.15;
-  }
 `;
 const App = ({ route }: Props) => (
   <AppWrapper>

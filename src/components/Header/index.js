@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import Container from '../BlockContainer';
 import Navbar from '../Navbar';
 import config from '../../config';
-
 /*
 color: $color-white;
 
