@@ -11,6 +11,7 @@ const WorkOrderForm = ({ workOrder }: Props) => (
     <h4>New Work Order</h4>
     <ul>
       <li>Name: {workOrder.name}</li>
+      <li>Description: {workOrder.description}</li>
     </ul>
   </div>
 );

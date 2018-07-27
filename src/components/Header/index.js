@@ -25,7 +25,7 @@ color: $color-white;
   }
  */
 const Header = styled.div`
-  overflow: auto;
+  overflow: visible;
   padding: 15px;
 `;
 const Logo = styled.img`
