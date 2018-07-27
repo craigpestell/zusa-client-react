@@ -9,9 +9,9 @@ import styled, { injectGlobal } from 'styled-components';
 import config from '../config';
 // Import your global styles here
 import 'normalize.css/normalize.css'; // eslint-disable-line import/first
-import './styles.scss';
 import Header from '../components/Header';
 
+import './styles.scss';
 // ========================
 // GLOBAL STYLES
 // eslint-disable-next-line no-unused-expressions
@@ -36,10 +36,6 @@ injectGlobal`
 `;
 // ========================
 
-const StyledHeader = styled(Header)`
-  align-content: flex-start;
-`;
-
 type Props = { route: Object };
 
 const AppWrapper = styled.div`
@@ -48,7 +44,7 @@ const AppWrapper = styled.div`
 const App = ({ route }: Props) => (
   <AppWrapper>
     <Helmet {...config.app} />
-    <StyledHeader {...config.app} />
+    <Header {...config.app} />
     {/* Child routes won't render without this */}
     {renderRoutes(route.routes)}
   </AppWrapper>

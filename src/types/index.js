@@ -43,9 +43,9 @@ export type Action =
   | { type: 'CATALOG_REQUESTING' }
   | { type: 'CATALOG_SUCCESS', data: Array<Object> }
   | { type: 'CATALOG_FAILURE', err: any }
-  | { type: 'WORKORDER_REQUESTING', workorderId: string }
-  | { type: 'WORKORDER_SUCCESS', workorderId: string, data: Object }
-  | { type: 'WORKORDER_FAILURE', workorderId: string, err: any };
+  | { type: 'WORKORDER_REQUESTING', workOrderId: string }
+  | { type: 'WORKORDER_SUCCESS', workOrderId: string, data: Object }
+  | { type: 'WORKORDER_FAILURE', workOrderId: string, err: any };
 
 export type Dispatch = (
   action: Action | ThunkAction | PromiseAction | Array<Action>

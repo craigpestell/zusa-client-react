@@ -65,6 +65,10 @@ const BuiltWith = styled.p`
   margin-bottom: 0;
 `;
 
+const Wrapper = styled.div`
+  border: 1px solid red;
+`;
+
 const BuiltHeader = ({ className }) => (
   <Container>
     <Header className={className}>
@@ -76,7 +80,9 @@ const BuiltHeader = ({ className }) => (
       <Hr />
       <Heading>{config.app.title}</Heading>
       <Subheading>{config.app.subHeading}</Subheading>
-      <Navbar />
+      <Wrapper>
+        <Navbar />
+      </Wrapper>
       <BuiltWith>React 16+, React Router 4+, Webpack 3+</BuiltWith>
     </Header>
   </Container>

@@ -84,7 +84,11 @@ const getPlugins = () => {
 // Setup the entry for development/prodcution
 const getEntry = () => {
   // Development
-  let entry = ['webpack-hot-middleware/client?reload=true', './src/client.js'];
+  let entry = [
+    'webpack-hot-middleware/client?reload=true',
+    'bootstrap-loader',
+    './src/client.js'
+  ];
 
   // Prodcution
   if (!isDev) entry = ['./src/client.js'];

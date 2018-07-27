@@ -49,7 +49,7 @@ export default [
         path: '/wo/:id',
         component: asyncWorkOrder,
         loadData: ({ params }: Object) => [
-          workOrderAction.fetchWorkorderIfNeeded(params.id)
+          workOrderAction.fetchWorkOrderIfNeeded(params.id)
         ]
       },
       {
