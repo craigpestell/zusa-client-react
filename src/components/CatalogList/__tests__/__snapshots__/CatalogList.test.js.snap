@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<CatalogList /> renders 1`] = `
+<div
+  className="CatalogList"
+>
+  <h4>
+    Catalog List
+  </h4>
+  <ul>
+    <li>
+      <a
+        href="/wo/1"
+        onClick={[Function]}
+      >
+        Welly
+      </a>
+    </li>
+  </ul>
+</div>
+`;
