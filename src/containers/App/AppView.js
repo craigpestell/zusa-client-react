@@ -5,6 +5,7 @@ import { Switch, Route } from 'react-router-dom';
 import Header from '../Header/Header';
 import HomePage from '../../components/HomePage/HomePage';
 import AboutPage from '../../components/AboutPage/AboutPage';
+import CatalogPage from '../../components/CatalogPage/CatalogPage';
 import NotFoundPage from '../../components/NotFoundPage/NotFoundPage';
 import * as AuthService from '../../utils/AuthService';
 
@@ -17,7 +18,7 @@ class AppView extends Component {
     loginSuccess: PropTypes.func.isRequired
   };
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     const { history, loginError, loginSuccess } = this.props;
     // Add callback for lock's `authenticated` event
     AuthService.lock.on('authenticated', authResult => {
@@ -45,6 +46,7 @@ class AppView extends Component {
         <Header />
         <Switch>
           <Route exact path="/" component={HomePage} />
+          <Route path="/catalog" component={CatalogPage} />
           <Route path="/about" component={AboutPage} />
           <Route component={NotFoundPage} />
         </Switch>

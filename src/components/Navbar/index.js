@@ -1,6 +1,9 @@
-import React, { Component } from 'react';
+/* eslint-disable react/destructuring-assignment */
+import React from 'react';
 import { Route, NavLink as RRNavLink, Link } from 'react-router-dom';
+// import styled from 'styled-components';
 import PropTypes from 'prop-types';
+
 import {
   Button,
   Collapse,
@@ -15,12 +18,7 @@ import {
   DropdownMenu,
   DropdownItem
 } from 'reactstrap';
-
-import Container from '../BlockContainer/BlockContainer';
-
-import config from '../../utils/config';
-import * as AuthService from '../../utils/AuthService';
-import './Header.css';
+// import AuthCallbackPage from '../AuthCallbackPage/AuthCallbackPage';
 
 const NavLinkRoute = ({ to, ...rest }) => (
   <Route path={to}>
@@ -34,46 +32,57 @@ const NavLinkRoute = ({ to, ...rest }) => (
 
 NavLinkRoute.propTypes = { to: PropTypes.string.isRequired };
 
-class HeaderView extends Component {
-  static propTypes = {
-    history: PropTypes.shape({
-      push: PropTypes.func.isRequired
-    }).isRequired,
-    auth: PropTypes.shape({
-      isAuthenticated: PropTypes.bool.isRequired,
-      profile: PropTypes.object,
-      error: PropTypes.object
-    }).isRequired,
-    loginRequest: PropTypes.func.isRequired,
-    logoutSuccess: PropTypes.func.isRequired
-  };
-
-  constructor(props){
+class MyNavbar extends React.Component {
+  constructor(props) {
     super(props);
+
+    this.toggle = this.toggle.bind(this);
+
     this.state = {
       isOpen: true
     };
+    const {isAuthenticated} = this.props;
+    this.isAuthenticated = isAuthenticated;
+    
+    const {handleLogin} = this.props;
+    const {handleLogout} = this.props;
+
+    this.handleLogin = handleLogin;
+    this.handleLogout = handleLogout;
   }
 
-  toggle = () => {
+  componentDidMount = () => {
+    
+  };
+
+  /* login = () => {
+    if (this.auth) {
+      this.auth.login();
+    }
+  };
+
+  logout = () => {
+    if (this.auth) {
+      this.auth.logout();
+    }
+  }; 
+
+  // eslint-disable-next-line no-unused-vars
+  handleAuthentication = (nextState, replace) => {
+    if (/access_token|id_token|error/.test(nextState.location.hash)) {
+      this.auth.handleAuthentication();
+    }
+  };
+  */
+
+  toggle() {
     this.setState(prevState => ({ isOpen: !prevState.isOpen }));
   }
-  handleLoginClick = () => {
-    AuthService.login();
-    this.props.loginRequest();
-  };
 
-  handleLogoutClick = () => {
-    this.props.logoutSuccess();
-    AuthService.logout(); // careful, this is a static method
-    this.props.history.push({ pathname: '/' });
-  };
-
-  render() {
-    const { auth } = this.props;
+  render = () => {
+    // eslint-disable-next-line react/prop-types
     return (
-      <div>
-        <Navbar color="light" light expand="md">
+      <Navbar color="light" light expand="md">
         <NavbarBrand to="/" tag={Link}>
           Zusa
         </NavbarBrand>
@@ -112,36 +121,49 @@ class HeaderView extends Component {
                 <DropdownItem>Reset</DropdownItem>
               </DropdownMenu>
             </UncontrolledDropdown>
-            {!auth.isAuthenticated && (
+            {!this.isAuthenticated && (
               <Button
                 bsStyle="primary"
                 className="btn-margin"
-                onClick={this.handleLoginClick}
+                onClick={this.handleLogin}
               >
                 Log In
               </Button>
             )}
-            {auth.isAuthenticated && (
-              <Button onClick={this.handleLogoutClick}>
+            {this.isAuthenticated && (
+              <Button onClick={this.handleLogut}>
                 Log Out
               </Button>
             )}
           </Nav>
         </Collapse>
       </Navbar>
-        {auth.isAuthenticated ? (
-          <div>
-            <img src={auth.profile.picture} height="40px" alt="profile" />
-            <span>Welcome, {auth.profile.nickname}</span>
-            <button onClick={this.handleLogoutClick}>Logout</button>
-          </div>
-        ) : (
-            <button onClick={this.handleLoginClick}>Login</button>
-          )}
-        {auth.error && <p>{JSON.stringify(auth.error)}</p>}
-      </div>
     );
   }
 }
+MyNavbar.defaultProps = {
+  isAuthenticated: false
+}
+MyNavbar.propTypes = { isAuthenticated: PropTypes.bool };
 
-export default HeaderView;
+/* 
+{!this.auth.isAuthenticated() && (
+              <Button
+                bsStyle="primary"
+                className="btn-margin"
+                onClick={this.login}
+              >
+                Log In
+              </Button>
+            )}
+            {this.auth.isAuthenticated() && (
+              <Button
+                bsStyle="primary"
+                className="btn-margin"
+                onClick={this.logout}
+              >
+                Log Out
+              </Button>
+            )}
+*/
+export default MyNavbar;

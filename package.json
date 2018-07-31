@@ -28,20 +28,33 @@
     "react-dom": "^16.2.0",
     "react-redux": "^5.0.6",
     "react-router-dom": "^4.2.2",
+    "reactstrap": "^6.3.1",
     "redux": "^3.7.2"
   },
   "devDependencies": {
+    "bootstrap": "^4.1.3",
+    "bootstrap-loader": "^3.0.0",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
+    "eslint": "^4.19.1",
     "jest-localstorage-mock": "^2.1.0",
-    "react-scripts": "1.1.0"
+    "jquery": "^3.3.1",
+    "node-sass": "^4.9.2",
+    "postcss-load-config": "^2.0.0",
+    "postcss-loader": "^2.1.6",
+    "postcss-preset-env": "^5.3.0",
+    "react-app-rewire-postcss": "^1.0.2",
+    "react-app-rewired": "^1.5.2",
+    "react-scripts": "1.1.0",
+    "resolve-url-loader": "^2.3.0",
+    "sass-loader": "^7.0.3"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
     "pretest": "npm run lint",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject",
+    "test": "react-app-rewired test --env=jsdom",
+    "eject": "react-app-rewired eject",
     "lint": "eslint src/"
   }
 }
